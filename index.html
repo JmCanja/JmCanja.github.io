@@ -814,6 +814,199 @@
         transition: color 0.3s;
       }
 
+      /* ── PORTFOLIO ── */
+      .portfolio-section {
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+      }
+
+      .portfolio-filters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 2.5rem;
+      }
+      .filter-btn {
+        padding: 7px 18px;
+        border-radius: 100px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--muted);
+        font-family: inherit;
+        font-size: 0.82rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .filter-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .filter-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .portfolio-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        transition:
+          transform 0.2s,
+          border-color 0.2s,
+          background 0.3s;
+        cursor: pointer;
+      }
+      .portfolio-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+      }
+      .portfolio-card.hidden {
+        display: none;
+      }
+
+      .portfolio-thumb {
+        width: 100%;
+        aspect-ratio: 16/10;
+        background: var(--bg);
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      /* Placeholder gradient previews — replace with real screenshots */
+      .portfolio-thumb.t1 {
+        background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #60a5fa 100%);
+      }
+      .portfolio-thumb.t2 {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      }
+      .portfolio-thumb.t3 {
+        background: linear-gradient(135deg, #0d2137 0%, #1a4a6b 60%, #2196a4 100%);
+      }
+      .portfolio-thumb.t4 {
+        background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%);
+      }
+      .portfolio-thumb.t5 {
+        background: linear-gradient(135deg, #14532d 0%, #166534 50%, #16a34a 100%);
+      }
+      .portfolio-thumb.t6 {
+        background: linear-gradient(135deg, #3b1f5e 0%, #6d28d9 50%, #8b5cf6 100%);
+      }
+
+      .portfolio-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .portfolio-thumb-label {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        padding: 1rem;
+      }
+      .portfolio-thumb-label .thumb-icon {
+        font-size: 2rem;
+        opacity: 0.8;
+      }
+      .portfolio-thumb-label span {
+        font-size: 0.78rem;
+        opacity: 0.6;
+        letter-spacing: 0.05em;
+      }
+
+      .portfolio-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(37, 99, 235, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+      .portfolio-card:hover .portfolio-overlay {
+        opacity: 1;
+      }
+      .portfolio-overlay span {
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border: 1.5px solid rgba(255, 255, 255, 0.6);
+        padding: 8px 20px;
+        border-radius: 100px;
+      }
+
+      .portfolio-info {
+        padding: 1.1rem 1.25rem;
+      }
+      .portfolio-tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        background: var(--accent-light);
+        padding: 3px 10px;
+        border-radius: 100px;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      .portfolio-title {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--section-title-color);
+        margin-bottom: 4px;
+        transition: color 0.3s;
+      }
+      .portfolio-desc {
+        font-size: 0.8rem;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .portfolio-cta {
+        text-align: center;
+        margin-top: 2.5rem;
+      }
+      .portfolio-cta p {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .portfolio-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 480px) {
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+        .portfolio-filters {
+          gap: 6px;
+        }
+      }
+
       /* ════════════════════
      RESPONSIVE
   ════════════════════ */
@@ -952,6 +1145,7 @@
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Work</a></li>
         <li><a href="#results">Results</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -970,6 +1164,7 @@
     <div class="nav-drawer" id="navDrawer">
       <a href="#about">About</a>
       <a href="#services">Services</a>
+      <a href="#portfolio">Work</a>
       <a href="#results">Results</a>
       <a href="#contact">Contact</a>
     </div>
@@ -979,7 +1174,8 @@
       <div class="hero-tag">Available for hire</div>
       <h1>Email marketing that<br /><span>drives real revenue</span></h1>
       <p>
-        I help businesses grow through strategic email campaigns, and automated flows — with nearly 4 years of hands-on expertise.
+        I help businesses grow through strategic email campaigns, and automated flows — with nearly
+        4 years of hands-on expertise.
       </p>
       <div class="hero-ctas">
         <a href="#contact" class="btn-primary">Work with me</a>
@@ -1018,7 +1214,8 @@
             <div class="section-title" style="margin-bottom: 1rem">Hi, I'm Jm Canja</div>
             <p>
               I'm an Email Marketing Specialist with nearly 4 years of experience crafting campaigns
-              that don't just land in inboxes — they convert. I combine persuasive audience segmentation, and A/B testing to consistently exceed industry benchmarks.
+              that don't just land in inboxes — they convert. I combine persuasive audience
+              segmentation, and A/B testing to consistently exceed industry benchmarks.
             </p>
             <p>
               Whether you need to revive a dormant list, build a welcome series from scratch, or
@@ -1029,10 +1226,12 @@
               <span class="tool-tag">Mailchimp</span>
               <span class="tool-tag">HubSpot</span>
               <span class="tool-tag">ActiveCampaign</span>
+              <span class="tool-tag">Maropost</span>
+              <span class="tool-tag">Ontraport</span>
               <span class="tool-tag">Canva</span>
-              <span class="tool-tag">HTMl/CSS</span>
-              <span class="tool-tag">Wordpress</span>
-              <span class="tool-tag">GoHighLevel</span>
+              <span class="tool-tag">HTML/CSS</span>
+              <span class="tool-tag">Wordpress/Elementor</span>
+              <span class="tool-tag">GHL</span>
               <span class="tool-tag">Figma</span>
             </div>
           </div>
@@ -1084,7 +1283,7 @@
           </div>
           <div class="service-card">
             <div class="service-icon">✍️</div>
-            <h3>Copywriting & Design</h3>
+            <h3>Design</h3>
             <p>
               Compelling subject lines and email copy paired with clean, on-brand layouts that drive
               clicks.
@@ -1195,6 +1394,143 @@
       </div>
     </section>
 
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="portfolio-section">
+      <div class="container">
+        <div class="section-label">My work</div>
+        <div class="section-title">Designs & Landing Pages</div>
+        <p class="section-sub">
+          A selection of email templates, landing pages, and campaign designs I've built. Replace
+          placeholders with your real screenshots.
+        </p>
+
+        <div class="portfolio-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="email">Email Templates</button>
+          <button class="filter-btn" data-filter="landing">Landing Pages</button>
+          <button class="filter-btn" data-filter="automation">Automation Flows</button>
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+          <!-- Card 1 -->
+          <div class="portfolio-card" data-category="email">
+            <div class="portfolio-thumb t1">
+              <!-- Replace below img tag with: <img src="your-screenshot.png" alt="Project name"> -->
+              <div class="portfolio-thumb-label">
+                <div class="thumb-icon">📧</div>
+                <span>Add your screenshot</span>
+              </div>
+              <div class="portfolio-overlay"><span>View project ↗</span></div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Email Template</span>
+              <div class="portfolio-title">Welcome Series — E-commerce</div>
+              <div class="portfolio-desc">
+                3-part onboarding flow with 48% open rate. Designed in Klaviyo for a DTC brand.
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="portfolio-card" data-category="landing">
+            <div class="portfolio-thumb t2">
+              <div class="portfolio-thumb-label">
+                <div class="thumb-icon">🖥️</div>
+                <span>Add your screenshot</span>
+              </div>
+              <div class="portfolio-overlay"><span>View project ↗</span></div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Landing Page</span>
+              <div class="portfolio-title">Lead Capture Page — SaaS</div>
+              <div class="portfolio-desc">
+                High-converting opt-in page with 34% conversion rate. Built for a B2B software
+                product.
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="portfolio-card" data-category="email">
+            <div class="portfolio-thumb t3">
+              <div class="portfolio-thumb-label">
+                <div class="thumb-icon">🛒</div>
+                <span>Add your screenshot</span>
+              </div>
+              <div class="portfolio-overlay"><span>View project ↗</span></div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Email Template</span>
+              <div class="portfolio-title">Abandoned Cart — Retail</div>
+              <div class="portfolio-desc">
+                Urgency-driven recovery email with countdown timer. Recovered 22% of abandoned
+                carts.
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="portfolio-card" data-category="automation">
+            <div class="portfolio-thumb t4">
+              <div class="portfolio-thumb-label">
+                <div class="thumb-icon">⚡</div>
+                <span>Add your screenshot</span>
+              </div>
+              <div class="portfolio-overlay"><span>View project ↗</span></div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Automation Flow</span>
+              <div class="portfolio-title">Post-Purchase Flow — DTC Brand</div>
+              <div class="portfolio-desc">
+                5-email sequence driving repeat purchases and referrals. Built in ActiveCampaign.
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="portfolio-card" data-category="landing">
+            <div class="portfolio-thumb t5">
+              <div class="portfolio-thumb-label">
+                <div class="thumb-icon">🎯</div>
+                <span>Add your screenshot</span>
+              </div>
+              <div class="portfolio-overlay"><span>View project ↗</span></div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Landing Page</span>
+              <div class="portfolio-title">Webinar Registration Page</div>
+              <div class="portfolio-desc">
+                Clean, minimal registration page for a B2B webinar. Achieved 41% sign-up rate.
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="portfolio-card" data-category="email">
+            <div class="portfolio-thumb t6">
+              <div class="portfolio-thumb-label">
+                <div class="thumb-icon">🔁</div>
+                <span>Add your screenshot</span>
+              </div>
+              <div class="portfolio-overlay"><span>View project ↗</span></div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Email Template</span>
+              <div class="portfolio-title">Re-engagement Campaign</div>
+              <div class="portfolio-desc">
+                Win-back campaign targeting cold subscribers. Reactivated 18% of a 15k list.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-cta">
+          <p>Want to see more work or discuss a specific project?</p>
+          <a href="#contact" class="btn-primary">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="contact-section">
       <div class="container">
@@ -1207,10 +1543,10 @@
               specific project, I'd love to hear from you.
             </p>
             <div class="contact-links">
-              <a href="mailto:jmcanja0408gmail.com" class="contact-link" target="_blank">
+              <a href="mailto:jmcanja0408@gmail.com" class="contact-link" target="_blank">
                 <div class="contact-link-icon">✉</div>
                 <div class="contact-link-text">
-                  <strong>Email me directly</strong><span>jmcanja0408gmail.com</span>
+                  <strong>Email me directly</strong><span>jmcanja0408@gmail.com</span>
                 </div>
               </a>
               <a href="https://www.linkedin.com/in/jm-canja/" class="contact-link" target="_blank">
@@ -1261,6 +1597,18 @@
       const toggle = document.getElementById("navToggle");
       const drawer = document.getElementById("navDrawer");
       const navEl = document.querySelector("nav");
+
+      // ── PORTFOLIO FILTERS ──
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          const filter = btn.dataset.filter;
+          document.querySelectorAll(".portfolio-card").forEach((card) => {
+            card.classList.toggle("hidden", filter !== "all" && card.dataset.category !== filter);
+          });
+        });
+      });
 
       // ── DARK MODE ──
       const saved = localStorage.getItem("theme") || "light";
