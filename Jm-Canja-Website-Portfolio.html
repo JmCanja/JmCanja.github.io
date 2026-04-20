@@ -1,0 +1,1299 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jm Canja — Email Marketing Specialist</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* ── LIGHT THEME ── */
+      :root,
+      [data-theme="light"] {
+        --navy: #0f1e2e;
+        --accent: #2563eb;
+        --accent-light: #dbeafe;
+        --accent-hover: #1d4ed8;
+        --text: #1e293b;
+        --text-p: #475569;
+        --muted: #64748b;
+        --border: #e2e8f0;
+        --bg: #f8fafc;
+        --surface: #ffffff;
+        --nav-bg: rgba(255, 255, 255, 0.97);
+        --card-bg: #ffffff;
+        --stat-bg: #ffffff;
+        --input-bg: #f8fafc;
+        --input-focus: #ffffff;
+        --hero-bg: #0f1e2e;
+        --results-bg: #0f1e2e;
+        --footer-bg: #0f1e2e;
+        --footer-text: #64748b;
+        --footer-span: #94a3b8;
+        --toggle-bg: #e2e8f0;
+        --toggle-knob: #ffffff;
+        --toggle-icon: "☀️";
+        --section-title-color: #0f1e2e;
+      }
+
+      /* ── DARK THEME ── */
+      [data-theme="dark"] {
+        --navy: #e2e8f0;
+        --accent: #60a5fa;
+        --accent-light: rgba(96, 165, 250, 0.12);
+        --accent-hover: #93c5fd;
+        --text: #e2e8f0;
+        --text-p: #94a3b8;
+        --muted: #64748b;
+        --border: #1e293b;
+        --bg: #0a0f1a;
+        --surface: #0f1829;
+        --nav-bg: rgba(10, 15, 26, 0.97);
+        --card-bg: #111827;
+        --stat-bg: #111827;
+        --input-bg: #0f1829;
+        --input-focus: #1e293b;
+        --hero-bg: #060d18;
+        --results-bg: #060d18;
+        --footer-bg: #060d18;
+        --footer-text: #475569;
+        --footer-span: #64748b;
+        --toggle-bg: #2563eb;
+        --toggle-knob: #ffffff;
+        --section-title-color: #e2e8f0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        background: var(--nav-bg);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+        transition:
+          background 0.3s,
+          border-color 0.3s;
+      }
+      .nav-brand {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--navy);
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        text-decoration: none;
+        font-size: 0.875rem;
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      /* nav right group */
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* ── DARK MODE TOGGLE ── */
+      .theme-toggle {
+        position: relative;
+        width: 44px;
+        height: 24px;
+        cursor: pointer;
+        background: var(--toggle-bg);
+        border: none;
+        border-radius: 100px;
+        transition: background 0.3s;
+        flex-shrink: 0;
+        padding: 0;
+      }
+      .theme-toggle::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--toggle-knob);
+        transition:
+          transform 0.3s ease,
+          background 0.3s;
+      }
+      [data-theme="dark"] .theme-toggle::after {
+        transform: translateX(20px);
+      }
+
+      /* Sun / moon icons inside toggle */
+      .theme-toggle .icon {
+        position: absolute;
+        top: 50%;
+        font-size: 11px;
+        line-height: 1;
+        transform: translateY(-50%);
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .theme-toggle .icon-sun {
+        left: 5px;
+        opacity: 1;
+      }
+      .theme-toggle .icon-moon {
+        right: 5px;
+        opacity: 0;
+      }
+      [data-theme="dark"] .theme-toggle .icon-sun {
+        opacity: 0;
+      }
+      [data-theme="dark"] .theme-toggle .icon-moon {
+        opacity: 1;
+      }
+
+      /* Hamburger */
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 36px;
+        height: 36px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .nav-toggle span {
+        display: block;
+        height: 2px;
+        background: var(--navy);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s,
+          background 0.3s;
+        transform-origin: center;
+      }
+      .nav-toggle.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .nav-toggle.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .nav-toggle.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* Mobile drawer */
+      .nav-drawer {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        z-index: 199;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 1.25rem 2rem 1.75rem;
+        flex-direction: column;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        transform: translateY(-8px);
+        opacity: 0;
+        transition:
+          transform 0.25s ease,
+          opacity 0.25s ease,
+          background 0.3s;
+      }
+      .nav-drawer.open {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .nav-drawer a {
+        display: block;
+        padding: 0.85rem 0;
+        text-decoration: none;
+        font-size: 1rem;
+        color: var(--text);
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      .nav-drawer a:last-child {
+        border-bottom: none;
+      }
+      .nav-drawer a:hover {
+        color: var(--accent);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        background: var(--hero-bg);
+        padding: 6rem 2rem 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 80% 60% at 50% 0%,
+          rgba(37, 99, 235, 0.2) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(37, 99, 235, 0.15);
+        border: 1px solid rgba(37, 99, 235, 0.3);
+        color: #93c5fd;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        border-radius: 100px;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+      .hero-tag::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #60a5fa;
+        display: block;
+      }
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 6vw, 3.6rem);
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.15;
+        margin-bottom: 1.25rem;
+        position: relative;
+      }
+      .hero h1 span {
+        color: #93c5fd;
+      }
+      .hero p {
+        font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+        color: #94a3b8;
+        max-width: 520px;
+        line-height: 1.75;
+        margin-bottom: 2.5rem;
+        position: relative;
+      }
+      .hero-ctas {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: relative;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background: var(--accent-hover);
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        background: transparent;
+        color: #94a3b8;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        padding: 12px 28px;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 0.9rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+        display: inline-block;
+      }
+      .btn-outline:hover {
+        border-color: #94a3b8;
+        color: #fff;
+      }
+
+      /* ── STATS ── */
+      .stats-wrap {
+        background: var(--stat-bg);
+        border-bottom: 1px solid var(--border);
+        transition:
+          background 0.3s,
+          border-color 0.3s;
+      }
+      .stats-inner {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .stat-item {
+        text-align: center;
+        padding: 1.5rem 1rem;
+        border-right: 1px solid var(--border);
+        transition: border-color 0.3s;
+      }
+      .stat-item:last-child {
+        border-right: none;
+      }
+      .stat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--section-title-color);
+        line-height: 1;
+        transition: color 0.3s;
+      }
+      .stat-num span {
+        color: var(--accent);
+      }
+      .stat-label {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      /* ── LAYOUT ── */
+      section {
+        padding: 5rem 2rem;
+        transition: background 0.3s;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .section-label {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
+        font-weight: 600;
+        color: var(--section-title-color);
+        margin-bottom: 1rem;
+        transition: color 0.3s;
+      }
+      .section-sub {
+        font-size: 1rem;
+        color: var(--muted);
+        max-width: 500px;
+        line-height: 1.7;
+        margin-bottom: 3rem;
+      }
+
+      /* ── ABOUT ── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+      }
+      .about-text p {
+        font-size: 0.975rem;
+        color: var(--text-p);
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        transition: color 0.3s;
+      }
+      .tools-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 1.5rem;
+      }
+      .tool-tag {
+        background: var(--accent-light);
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 500;
+        padding: 5px 12px;
+        border-radius: 100px;
+        border: 1px solid rgba(96, 165, 250, 0.3);
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+      .about-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .about-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        border-left: 3px solid var(--accent);
+        transition:
+          background 0.3s,
+          border-color 0.3s;
+      }
+      .about-card-label {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+      .about-card-val {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--section-title-color);
+        transition: color 0.3s;
+      }
+
+      /* ── SERVICES ── */
+      .services-section {
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+      }
+      .service-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.75rem;
+        transition:
+          background 0.3s,
+          border-color 0.3s,
+          transform 0.2s;
+      }
+      .service-card:hover {
+        transform: translateY(-2px);
+      }
+      .service-icon {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+      .service-card h3 {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--section-title-color);
+        margin-bottom: 0.5rem;
+        transition: color 0.3s;
+      }
+      .service-card p {
+        font-size: 0.875rem;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* ── RESULTS ── */
+      .results-section {
+        background: var(--results-bg);
+        transition: background 0.3s;
+      }
+      .results-section .section-label {
+        color: #60a5fa;
+      }
+      .results-section .section-title {
+        color: #e2e8f0;
+      }
+      .results-section .section-sub {
+        color: #94a3b8;
+      }
+      .results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+      }
+      .result-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1.75rem;
+      }
+      .result-num {
+        font-family: "Playfair Display", serif;
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: #60a5fa;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+      .result-desc {
+        font-size: 0.875rem;
+        color: #94a3b8;
+        line-height: 1.6;
+      }
+      .result-industry {
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #60a5fa;
+        background: rgba(37, 99, 235, 0.15);
+        padding: 3px 10px;
+        border-radius: 100px;
+      }
+
+      /* ── PROCESS ── */
+      .process-section {
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        transition: background 0.3s;
+      }
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: border-color 0.3s;
+      }
+      .process-step {
+        padding: 1.75rem 1.25rem;
+        border-right: 1px solid var(--border);
+        text-align: center;
+        background: var(--surface);
+        transition:
+          background 0.3s,
+          border-color 0.3s;
+      }
+      .process-step:last-child {
+        border-right: none;
+      }
+      .step-num {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--accent-light);
+        color: var(--accent);
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        border: 2px solid rgba(96, 165, 250, 0.3);
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+      .process-step h4 {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--section-title-color);
+        margin-bottom: 0.4rem;
+        transition: color 0.3s;
+      }
+      .process-step p {
+        font-size: 0.8rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* ── CONTACT ── */
+      .contact-section {
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        transition: background 0.3s;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+      .contact-info p {
+        font-size: 0.975rem;
+        color: var(--text-p);
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        transition: color 0.3s;
+      }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .contact-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--text);
+        font-size: 0.875rem;
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          color 0.3s;
+      }
+      .contact-link:hover {
+        border-color: var(--accent);
+        background: var(--accent-light);
+      }
+      .contact-link-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--accent-light);
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+      .contact-link-text strong {
+        display: block;
+        font-weight: 500;
+        font-size: 0.82rem;
+        color: var(--section-title-color);
+        transition: color 0.3s;
+      }
+      .contact-link-text span {
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .form-group label {
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        padding: 10px 14px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 0.9rem;
+        color: var(--text);
+        background: var(--input-bg);
+        transition:
+          border-color 0.2s,
+          background 0.3s,
+          color 0.3s;
+        outline: none;
+        width: 100%;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        border-color: var(--accent);
+        background: var(--input-focus);
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .btn-send {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 13px 28px;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        width: 100%;
+        transition: background 0.2s;
+      }
+      .btn-send:hover {
+        background: var(--accent-hover);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--footer-bg);
+        color: var(--footer-text);
+        text-align: center;
+        padding: 2rem 1.5rem;
+        font-size: 0.82rem;
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+      footer span {
+        color: var(--footer-span);
+        transition: color 0.3s;
+      }
+
+      /* ════════════════════
+     RESPONSIVE
+  ════════════════════ */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-toggle {
+          display: flex;
+        }
+        .nav-drawer {
+          display: flex;
+        }
+        nav {
+          padding: 0 1.25rem;
+        }
+        .hero {
+          padding: 4rem 1.5rem 3.5rem;
+        }
+        .stats-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .stat-item {
+          border-right: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+        }
+        .stat-item:nth-child(2) {
+          border-right: none;
+        }
+        .stat-item:nth-child(3) {
+          border-bottom: none;
+        }
+        .stat-item:nth-child(4) {
+          border-right: none;
+          border-bottom: none;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .about-cards {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .results-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .process-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .process-step {
+          border-right: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+        }
+        .process-step:nth-child(2n) {
+          border-right: none;
+        }
+        .process-step:nth-child(5) {
+          border-bottom: none;
+          grid-column: span 2;
+        }
+        .process-step:nth-child(3),
+        .process-step:nth-child(4) {
+          border-bottom: none;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        section {
+          padding: 4rem 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav {
+          padding: 0 1rem;
+        }
+        .nav-drawer {
+          padding: 1rem 1.25rem 1.5rem;
+        }
+        .hero {
+          padding: 3.5rem 1.25rem 3rem;
+        }
+        .hero-ctas {
+          flex-direction: column;
+          align-items: stretch;
+          width: 100%;
+          max-width: 320px;
+        }
+        .btn-primary,
+        .btn-outline {
+          text-align: center;
+          padding: 13px 20px;
+        }
+        .about-cards {
+          grid-template-columns: 1fr;
+        }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .results-grid {
+          grid-template-columns: 1fr;
+        }
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+        .process-step {
+          border-right: none !important;
+          border-bottom: 1px solid var(--border) !important;
+          grid-column: span 1 !important;
+        }
+        .process-step:last-child {
+          border-bottom: none !important;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        section {
+          padding: 3rem 1.25rem;
+        }
+        .section-sub {
+          margin-bottom: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a class="nav-brand" href="#">Jm Canja</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="icon icon-sun">☀</span>
+          <span class="icon icon-moon">☽</span>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MOBILE DRAWER -->
+    <div class="nav-drawer" id="navDrawer">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#results">Results</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-tag">Available for hire</div>
+      <h1>Email marketing that<br /><span>drives real revenue</span></h1>
+      <p>
+        I help businesses grow through strategic email campaigns, automated flows, and data-driven
+        copy — with nearly 4 years of hands-on expertise.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Work with me</a>
+        <a href="#results" class="btn-outline">See my results</a>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-wrap">
+      <div class="stats-inner">
+        <div class="stat-item">
+          <div class="stat-num">4<span>+</span></div>
+          <div class="stat-label">Years experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">35<span>%+</span></div>
+          <div class="stat-label">Avg. open rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50<span>+</span></div>
+          <div class="stat-label">Campaigns launched</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5<span>★</span></div>
+          <div class="stat-label">Client satisfaction</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text">
+            <div class="section-label">About me</div>
+            <div class="section-title" style="margin-bottom: 1rem">Hi, I'm Jm Canja</div>
+            <p>
+              I'm an Email Marketing Specialist with nearly 4 years of experience crafting campaigns
+              that don't just land in inboxes — they convert. I combine persuasive copywriting,
+              audience segmentation, and A/B testing to consistently exceed industry benchmarks.
+            </p>
+            <p>
+              Whether you need to revive a dormant list, build a welcome series from scratch, or
+              improve your open rates, I bring both the strategy and the execution.
+            </p>
+            <div class="tools-list">
+              <span class="tool-tag">Klaviyo</span>
+              <span class="tool-tag">Mailchimp</span>
+              <span class="tool-tag">HubSpot</span>
+              <span class="tool-tag">ActiveCampaign</span>
+              <span class="tool-tag">Canva</span>
+              <span class="tool-tag">Google Analytics</span>
+              <span class="tool-tag">Figma</span>
+            </div>
+          </div>
+          <div class="about-cards">
+            <div class="about-card">
+              <div class="about-card-label">Specialization</div>
+              <div class="about-card-val">Email Strategy & Automation</div>
+            </div>
+            <div class="about-card">
+              <div class="about-card-label">Experience</div>
+              <div class="about-card-val">Nearly 4 years in email marketing</div>
+            </div>
+            <div class="about-card">
+              <div class="about-card-label">Availability</div>
+              <div class="about-card-val">Open to freelance & full-time roles</div>
+            </div>
+            <div class="about-card">
+              <div class="about-card-label">Focus</div>
+              <div class="about-card-val">E-commerce, SaaS & B2B brands</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services-section">
+      <div class="container">
+        <div class="section-label">What I offer</div>
+        <div class="section-title">Services</div>
+        <p class="section-sub">
+          End-to-end email marketing solutions tailored to your business goals.
+        </p>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">📧</div>
+            <h3>Campaign Strategy & Execution</h3>
+            <p>
+              From planning to send — newsletters, promotions, announcements, and seasonal campaigns
+              built to convert.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">⚡</div>
+            <h3>Automation & Flows</h3>
+            <p>
+              Welcome series, abandoned cart, post-purchase, and re-engagement flows that work 24/7.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">✍️</div>
+            <h3>Copywriting & Design</h3>
+            <p>
+              Compelling subject lines and email copy paired with clean, on-brand layouts that drive
+              clicks.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🎯</div>
+            <h3>Segmentation & Personalization</h3>
+            <p>
+              Targeted messaging to the right audience at the right time, boosting relevance and
+              revenue.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">📊</div>
+            <h3>Analytics & Optimization</h3>
+            <p>
+              A/B testing, performance reporting, and continuous optimization to keep improving
+              results.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🔧</div>
+            <h3>List Management & Deliverability</h3>
+            <p>Keeping your list clean, engaged, and landing in the inbox — not the spam folder.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="results" class="results-section">
+      <div class="container">
+        <div class="section-label">Proof of impact</div>
+        <div class="section-title">Results I've delivered</div>
+        <p class="section-sub" style="margin-bottom: 3rem">
+          Real outcomes from real campaigns — numbers that show what strategic email marketing can
+          do.
+        </p>
+        <div class="results-grid">
+          <div class="result-card">
+            <div class="result-num">42%</div>
+            <div class="result-desc">
+              Average open rate achieved on a re-engagement campaign for a dormant list of 10k
+              subscribers.
+            </div>
+            <span class="result-industry">E-commerce</span>
+          </div>
+          <div class="result-card">
+            <div class="result-num">3.8×</div>
+            <div class="result-desc">
+              ROI increase after rebuilding automation flows and segmentation strategy from scratch.
+            </div>
+            <span class="result-industry">SaaS</span>
+          </div>
+          <div class="result-card">
+            <div class="result-num">28%</div>
+            <div class="result-desc">
+              Reduction in unsubscribe rate after personalizing content by customer lifecycle stage.
+            </div>
+            <span class="result-industry">B2B</span>
+          </div>
+          <div class="result-card">
+            <div class="result-num">6.5%</div>
+            <div class="result-desc">
+              Click-through rate on promotional campaign — more than 3× the industry average of
+              2.1%.
+            </div>
+            <span class="result-industry">Retail</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="process-section">
+      <div class="container">
+        <div class="section-label">How I work</div>
+        <div class="section-title">My process</div>
+        <p class="section-sub">A clear, collaborative process from kickoff to results.</p>
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="step-num">01</div>
+            <h4>Discovery</h4>
+            <p>Understanding your brand, goals, and audience.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-num">02</div>
+            <h4>Strategy</h4>
+            <p>Mapping the campaign plan and segmentation approach.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-num">03</div>
+            <h4>Build</h4>
+            <p>Writing copy, designing templates, setting up flows.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-num">04</div>
+            <h4>Launch</h4>
+            <p>Testing, QA, and sending with confidence.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-num">05</div>
+            <h4>Optimize</h4>
+            <p>Analyzing results and refining for next time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="section-label">Get in touch</div>
+            <div class="section-title" style="margin-bottom: 1rem">Let's work together</div>
+            <p>
+              Whether you're looking to hire an email marketing specialist or need help with a
+              specific project, I'd love to hear from you.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:jmcanja0408gmail.com" class="contact-link" target="_blank">
+                <div class="contact-link-icon">✉</div>
+                <div class="contact-link-text">
+                  <strong>Email me directly</strong><span>jmcanja0408gmail.com</span>
+                </div>
+              </a>
+              <a href="https://www.linkedin.com/in/jm-canja/" class="contact-link" target="_blank">
+                <div class="contact-link-icon">in</div>
+                <div class="contact-link-text">
+                  <strong>Connect on LinkedIn</strong><span>linkedin.com/in/jm-canja/</span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Name</label><input type="text" placeholder="Your name" />
+                </div>
+                <div class="form-group">
+                  <label>Email</label><input type="email" placeholder="your@email.com" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>What do you need?</label>
+                <select>
+                  <option>— Select a service —</option>
+                  <option>Email campaign strategy</option>
+                  <option>Automation & flows setup</option>
+                  <option>Copywriting & design</option>
+                  <option>Full-time / part-time role</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Message</label
+                ><textarea placeholder="Tell me about your project or role..."></textarea>
+              </div>
+              <button class="btn-send">Send message →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer><span>© 2026 Jm Canja — Email Marketing Specialist.</span> Built with care.</footer>
+
+    <script>
+      const html = document.documentElement;
+      const themeBtn = document.getElementById("themeToggle");
+      const toggle = document.getElementById("navToggle");
+      const drawer = document.getElementById("navDrawer");
+      const navEl = document.querySelector("nav");
+
+      // ── DARK MODE ──
+      const saved = localStorage.getItem("theme") || "light";
+      html.setAttribute("data-theme", saved);
+
+      themeBtn.addEventListener("click", () => {
+        const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+      });
+
+      // ── HAMBURGER ──
+      function closeDrawer() {
+        drawer.classList.remove("open");
+        toggle.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+
+      toggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = !drawer.classList.contains("open");
+        drawer.classList.toggle("open", isOpen);
+        toggle.classList.toggle("open", isOpen);
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        document.body.style.overflow = isOpen ? "hidden" : "";
+      });
+
+      drawer.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeDrawer));
+
+      document.addEventListener("click", (e) => {
+        if (!navEl.contains(e.target) && !drawer.contains(e.target)) closeDrawer();
+      });
+    </script>
+  </body>
+</html>
